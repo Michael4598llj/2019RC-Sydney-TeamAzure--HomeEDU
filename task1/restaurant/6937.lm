@@ -1,0 +1,73 @@
+Language model created by QuickLM on Thu Jul  4 23:39:04 EDT 2019
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 12 sentences and 14 words
+
+\data\
+ngram 1=14
+ngram 2=24
+ngram 3=12
+
+\1-grams:
+-0.7782 </s> -0.3010
+-0.7782 <s> -0.2218
+-1.8573 BAKED -0.2218
+-1.8573 BEAN -0.2218
+-1.8573 INSTANT -0.2218
+-1.8573 JELLY -0.2218
+-1.8573 JUICE -0.2218
+-1.8573 NOODLE -0.2218
+-1.8573 NUTELLA -0.2218
+-1.8573 ORANGE -0.2218
+-1.8573 PEPSI -0.2218
+-1.8573 PRINGLES -0.2218
+-1.8573 TEA -0.2218
+-1.8573 TUNA -0.2218
+
+\2-grams:
+-1.3802 <s> BAKED 0.0000
+-1.3802 <s> BEAN 0.0000
+-1.3802 <s> INSTANT 0.0000
+-1.3802 <s> JELLY 0.0000
+-1.3802 <s> JUICE 0.0000
+-1.3802 <s> NOODLE 0.0000
+-1.3802 <s> NUTELLA 0.0000
+-1.3802 <s> ORANGE 0.0000
+-1.3802 <s> PEPSI 0.0000
+-1.3802 <s> PRINGLES 0.0000
+-1.3802 <s> TEA 0.0000
+-1.3802 <s> TUNA 0.0000
+-0.3010 BAKED </s> -0.3010
+-0.3010 BEAN </s> -0.3010
+-0.3010 INSTANT </s> -0.3010
+-0.3010 JELLY </s> -0.3010
+-0.3010 JUICE </s> -0.3010
+-0.3010 NOODLE </s> -0.3010
+-0.3010 NUTELLA </s> -0.3010
+-0.3010 ORANGE </s> -0.3010
+-0.3010 PEPSI </s> -0.3010
+-0.3010 PRINGLES </s> -0.3010
+-0.3010 TEA </s> -0.3010
+-0.3010 TUNA </s> -0.3010
+
+\3-grams:
+-0.3010 <s> BAKED </s>
+-0.3010 <s> BEAN </s>
+-0.3010 <s> INSTANT </s>
+-0.3010 <s> JELLY </s>
+-0.3010 <s> JUICE </s>
+-0.3010 <s> NOODLE </s>
+-0.3010 <s> NUTELLA </s>
+-0.3010 <s> ORANGE </s>
+-0.3010 <s> PEPSI </s>
+-0.3010 <s> PRINGLES </s>
+-0.3010 <s> TEA </s>
+-0.3010 <s> TUNA </s>
+
+\end\

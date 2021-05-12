@@ -1,0 +1,56 @@
+<!-- 导航launch文件 -->
+<launch>
+  <!-- 唤醒turtlebot -->
+  <include file="/home/mustar/catkin_ws/src/turtlebot/turtlebot_bringup/launch/minimal.launch" />
+  <include file="$(find turtlebot_follower)/launch/includes/velocity_smoother.launch.xml">
+      <arg name="nodelet_manager"  value="/mobile_base_nodelet_manager"/>
+      <arg name="navigation_topic" value="/cmd_vel_mux/input/navi"/>
+  </include>
+ <include file="$(find turtlebot_follower)/launch/includes/safety_controller.launch.xml"/>
+  <!--<include file="~/turtlebot/src/turtlebot_apps/turtlebot_follower/launch/follower.launch" /> -->
+  
+  <include file="$(find rchomeedu_vision)/launch/astra_top.launch">
+  </include>
+<!-- 加载地图 -->
+  <arg name="map_file" default="/home/mustar/new/module/map/my_map.yaml" /> 
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
+<!-- 设置amcl-->
+  <arg name="initial_pose_x" default="0.269"/> <!-- 设置初始坐标 -->
+  <arg name="initial_pose_y" default="-0.866"/> 
+  <arg name="initial_pose_a" default="1.46"/>
+
+  <include file="/home/mustar/catkin_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/amcl/amcl.launch.xml">
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+  </include>
+  <!-- 加载move_base -->
+  <include file="/home/mustar/catkin_ws/src/turtlebot_apps/turtlebot_navigation/launch/includes/move_base.launch.xml"/>
+ <!-- 3D visualization -->
+  <!-- Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="true" args="-d /home/mustar/ours/rviz/navigation.rviz"/>
+
+  <!--  Real robot: Load turtlebot follower into the 3d sensors nodelet manager to avoid pointcloud serializing -->
+  <!--  Simulation: Load turtlebot follower into nodelet manager for compatibility -->
+  <node pkg="nodelet" type="nodelet" name="turtlebot_follower"
+        args="load turtlebot_follower/TurtlebotFollower camera/camera_nodelet_manager">
+    <remap from="turtlebot_follower/cmd_vel" to="follower_velocity_smoother/raw_cmd_vel"/>
+    <remap from="depth/points" to="camera/depth/points"/>
+    <param name="enabled" value="true" />
+    <param name="x_scale" value="7.0" />
+    <param name="z_scale" value="2.0" />
+    <param name="min_x" value="-0.35" />
+    <param name="max_x" value="0.35" />
+    <param name="min_y" value="0.1" />
+    <param name="max_y" value="0.5" />
+    <param name="max_z" value="1.2" />
+    <param name="goal_z" value="0.6" />
+  </node>
+  <!-- Launch the script which will toggle turtlebot following on and off based on a joystick button. default: on -->
+  <node name="switch" pkg="turtlebot_follower" type="switch.py"/>
+</launch>
+
+
+
+
+

@@ -1,0 +1,8 @@
+<launch>
+
+  <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+    <param name="lm" value="$(find rbx1_speech)/config/restaurant/6937.lm"/>
+    <param name="dict" value="$(find rbx1_speech)/config/restaurant/6937.dic"/>
+  </node>
+  
+</launch>
